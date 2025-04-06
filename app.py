@@ -1,19 +1,17 @@
-# streamlit_app.py
-
 import pandas as pd
 import numpy as np
 import faiss
 from sentence_transformers import SentenceTransformer
 import streamlit as st
 
-# Load the CSV
-df = pd.read_csv("shl_catalog_detailed.csv")
-
-# Load FAISS index
-index = faiss.read_index("shl_assessments_index.faiss")
-
-# Load the Sentence Transformer model
-model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
+# Load data and models
+try:
+    df = pd.read_csv("shl_catalog_detailed.csv")
+    index = faiss.read_index("shl_catalog_index.faiss")  # Match your file name
+    model = SentenceTransformer('all-MiniLM-L6-v2')
+except Exception as e:
+    st.error(f"Failed to load: {e}")
+    st.stop()
 
 st.title("🔍 SHL Assessment Recommendation Engine")
 
