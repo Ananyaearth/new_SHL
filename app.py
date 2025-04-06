@@ -12,7 +12,7 @@ try:
     index = faiss.read_index("shl_assessments_index.faiss")
     st.write("Loading SentenceTransformer...")
     # Explicitly fetch model with cache
-    model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2', cache_folder='./cache')
+    model = SentenceTransformer('all-MiniLM-L6-v2')
     st.write("All loaded!")
 except Exception as e:
     st.error(f"Failed to load: {e}")
