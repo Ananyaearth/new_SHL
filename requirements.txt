@@ -1,5 +1,5 @@
 streamlit==1.36.0
 pandas==2.2.2
-faiss-cpu==1.8.0
+faiss==1.7.4  # Swap faiss-cpu for faiss
 sentence-transformers==3.0.1
-transformers==4.43.3  # Fixes OSErro
+transformers==4.43.3
