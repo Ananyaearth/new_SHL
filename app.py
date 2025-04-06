@@ -6,9 +6,13 @@ import streamlit as st
 
 # Load data and models
 try:
+    st.write("Loading CSV...")
     df = pd.read_csv("shl_catalog_detailed.csv")
-    index = faiss.read_index("shl_assessments_index.faiss")  # Match your file name
+    st.write("Loading FAISS...")
+    index = faiss.read_index("shl_assessments_index.faiss")
+    st.write("Loading SentenceTransformer...")
     model = SentenceTransformer('all-MiniLM-L6-v2')
+    st.write("All loaded!")
 except Exception as e:
     st.error(f"Failed to load: {e}")
     st.stop()
