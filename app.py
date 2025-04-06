@@ -13,7 +13,7 @@ df = pd.read_csv("shl_catalog_detailed.csv")
 index = faiss.read_index("shl_assessments_index.faiss")
 
 # Load the Sentence Transformer model
-model = SentenceTransformer('all-MiniLM-L6-v2')
+model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 
 st.title("🔍 SHL Assessment Recommendation Engine")
 
