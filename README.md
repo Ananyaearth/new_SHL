@@ -95,14 +95,3 @@ The **SHL Assessment Recommendation Engine** provides a fast, efficient, and sca
    cd new_SHL
 Install the necessary dependencies:
 
-bash
-Copy
-Edit
-pip install -r requirements.txt
-Run the Streamlit app:
-
-bash
-Copy
-Edit
-streamlit run app.py
-Visit the app in your browser at the provided local address.
