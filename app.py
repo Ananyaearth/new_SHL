@@ -25,7 +25,7 @@ test_type_map = {
 # Load data and index
 try:
     st.write("Loading CSV...")
-    df = pd.read_csv("shl_catalog_with_summaries.csv")
+    df = pd.read_csv("shl_catalog_detailed.csv")
     st.write("Loading FAISS...")
     index = faiss.read_index("shl_assessments_index.faiss")
     st.write("Loading SentenceTransformer...")
