@@ -8,7 +8,7 @@ import google.generativeai as genai
 # Configure Gemini API
 API_KEY = st.secrets.get("GEMINI_API_KEY", "AIzaSyASKTzSNuMbJMdZWr81Xuw2hS1Poe3acZo")
 genai.configure(api_key=API_KEY)
-model = genai.GenerativeModel('gemini-2.5-pro-exp-03-25"')  # Gemini model for LLM
+model = genai.GenerativeModel('gemini-2.5-pro-exp-03-25')  # Gemini model for LLM
 
 # Test Type mapping (consistent with your FastAPI version)
 test_type_map = {
