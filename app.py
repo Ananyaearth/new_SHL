@@ -8,7 +8,7 @@ import google.generativeai as genai
 # Configure Gemini API
 API_KEY = st.secrets.get("GEMINI_API_KEY", "AIzaSyASKTzSNuMbJMdZWr81Xuw2hS1Poe3acZo")
 genai.configure(api_key=API_KEY)
-model = genai.GenerativeModel('gemini-1.5-pro')
+model = genai.GenerativeModel('gemini-1.5-pro')  # Gemini model for LLM
 
 # Test Type mapping (consistent with your FastAPI version)
 test_type_map = {
@@ -29,8 +29,8 @@ try:
     st.write("Loading FAISS...")
     index = faiss.read_index("shl_assessments_index.faiss")
     st.write("Loading SentenceTransformer...")
-    # Explicitly fetch model with cache
-    model = SentenceTransformer('all-MiniLM-L6-v2')
+    # Explicitly fetch model with cache, renamed to avoid conflict
+    embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
     st.write("All loaded!")
 except Exception as e:
     st.error(f"Failed to load: {e}")
@@ -51,7 +51,7 @@ if query:
     def llm_shorten_query(query):
         prompt = "Extract all technical skills from query as space-separated list, max 10: "
         try:
-            response = model.generate_content(prompt + query)
+            response = model.generate_content(prompt + query)  # Use Gemini model
             shortened = response.text.strip()
             words = shortened.split()
             return " ".join(words[:10]) if words else query
@@ -62,7 +62,7 @@ if query:
     processed_query = llm_shorten_query(query)
     st.write(f"Processed Query: {processed_query}")  # Debug from reference
 
-    query_embedding = model.encode([processed_query])[0].astype("float32")
+    query_embedding = embedding_model.encode([processed_query])[0].astype("float32")
     distances, indices = index.search(np.array([query_embedding]), top_k)
 
     results = []
